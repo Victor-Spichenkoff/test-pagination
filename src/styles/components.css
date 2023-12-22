@@ -1,0 +1,54 @@
+#title {
+    font-size: 2em;
+    background-color: rgb(202, 203, 204);
+    margin: 0;
+    text-align: center;
+   
+}
+
+#object-area {
+    background-color: black;
+    width: 90%;
+    height: fit-content;
+    padding: 50px 20px;
+    margin: auto;
+    color: white;
+}
+
+
+
+/* Colorir o objeto */
+.coloredObject {
+    display: flex;
+    flex-direction: column;
+    padding: 0 10px;
+    /* border: 1px solid #ccc; */
+    /* border-radius: 5px; */
+}
+
+.item {
+    display: flex;
+    margin-bottom: 5px;
+    margin-left: 17px;
+}
+
+#edit-send {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-around;
+}
+
+#edit {
+    background-color: #008000;
+}
+
+#edit:hover {
+    box-shadow: 0 0 10px green;
+}
+
+div#code-editor {
+    width: 100% !important;
+    margin: auto !important;
+    font-size: 17px !important;
+    min-height: 300px !important;
+}
