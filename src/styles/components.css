@@ -13,6 +13,7 @@
     padding: 50px 20px;
     margin: auto;
     color: white;
+    box-shadow: 3px 3px 6px black;
 }
 
 
@@ -33,17 +34,28 @@
 }
 
 #edit-send {
-    margin-top: 30px;
+    width: 90%;
+    margin: 30px 5%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 #edit {
     background-color: #008000;
 }
 
+#send {
+    background-color: rgb(12, 126, 219);
+}
+
 #edit:hover {
-    box-shadow: 0 0 10px green;
+    box-shadow: 0 0 20px rgb(1, 109, 1);
+    background-color: #03b303;
+}
+
+#send:hover {
+    box-shadow: 0 0 20px rgb(12, 126, 219);
+    background-color: rgb(0, 140, 255);
 }
 
 div#code-editor {
@@ -52,3 +64,4 @@ div#code-editor {
     font-size: 17px !important;
     min-height: 300px !important;
 }
+
