@@ -65,3 +65,30 @@ div#code-editor {
     min-height: 300px !important;
 }
 
+
+.all-cards {
+    display: flex;
+    justify-content: center;
+}
+
+.card {
+    width: 300px;
+    padding: 10px 20px;
+    box-shadow: 2px 2px 7px #00000079;
+    border-radius: 4px;
+    position: relative;
+}
+
+.card-image {
+    width: 100%;
+    aspect-ratio: 1;
+    background-position: center;
+    background-size: cover;
+    position: static;
+    top: 10px;
+}
+
+.card-text {
+    font-size: 1.1em;
+    padding: 6px 3px;
+}

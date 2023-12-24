@@ -10,7 +10,7 @@
     font-weight: 800;
     border-radius: 7px;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.301);
-    animation: fade-in-out 6s forwards;
+    animation: fade-in-out 5s forwards;
 }
 
 .success {

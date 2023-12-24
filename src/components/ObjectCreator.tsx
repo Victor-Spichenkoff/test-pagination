@@ -6,9 +6,11 @@ import Mensage from "@/extraComponets/Mensage"
 import axios from "axios"
 
 interface PropsObjectCreator {
-    paginationObject: object
-    setPaginationObject: any
-    setPagesItens: any
+    // paginationObject: object
+    // setPaginationObject: any
+    setPageData: any
+    setTotalPages:any
+    curentPage: number
 }
 
 const defaultObject =`{
@@ -24,7 +26,6 @@ const defaultObject =`{
 
 function getStorageObject(setCode: any) {
     const storageCode = localStorage.getItem(code_key) || defaultObject
-    console.log(storageCode)
     setCode(storageCode)
 }
 
@@ -35,31 +36,62 @@ function setStorageObject(code: string) {
 
 
 
-export default function ObjectCreator(props: any) {
+export default function ObjectCreator(props: PropsObjectCreator) {
     const [editMode, setEditMode] = useState(false)
     const [code, setCode] = useState('')
-    const [mesage, setMensage] = useState(['', 300, false])
+    const [mensage, setMensage] = useState(['', 200, false])
 
     useEffect(() => getStorageObject(setCode), [])
 
 
-    function handleResponse(res: any) {
-        const msg = res.msg ?? 'Success'
-        setMensage([res.msg, res.status, true])
+    useEffect(()=> {
+        try {
+            const evalCode = convertStringToObject()
+            evalCode.page = props.curentPage
+            axios.put(`${baseUrl}/pagination`, evalCode)
+                .then((res)=>{
+                    props.setPageData(res.data)//propximo array
+                })
+                .catch(handleError)
+        } catch(e) {/*já cuidei disso*/}
 
-        setTimeout(()=> setMensage([res.msg, res.status, false]), 6000)
+    }, [])
+
+    function handleSuccess(res: any) {
+        const msg = res.msg ?? 'Sending...'
+        setMensage([msg, res.status, true])
+
+        setTimeout(()=> setMensage([res.msg, res.status, false]), 5000)
+
+        props.setPageData(res.data)
     }
     
+    function handleError(res: any) {
+        const msg = res.msg ?? 'Error'
+        setMensage([msg, 400, true])
+
+        setTimeout(()=> setMensage([msg, 400, false]), 5000)
+    }
+
+    function convertStringToObject() {
+        try {
+            const obj = eval('(' + code + ')')
+            props.setTotalPages(obj.pagination.totalPages)
+
+            return obj
+        } catch(e) {
+            handleError({msg: 'Invalalid Object', status:400})
+            throw 'Error'
+        }
+    }
+
     function getPages(code: string, setPagesItens: any) {
-        //MEXER NISSO, ELE TÁ RECEBENDO APENAS {}
-        // const codeAsString = String(code)
-        const codeAsJson = JSON.stringify(code).replaceAll(`\\n`, '')
-        const parsedCode = JSON.parse(codeAsJson)
-        console.log(Object.create(parsedCode))
-        axios.put(`${baseUrl}/pagination`, )
-            .then(res => { console.log(res.data)   ;    return res})
-            .then(handleResponse)
-            .catch(handleResponse)
+        try {
+            const evalCode = convertStringToObject()
+            axios.put(`${baseUrl}/pagination`, evalCode)
+                .then(handleSuccess)
+                .catch(handleError)
+        } catch(e) {/*já cuidei disso*/}
     }
 
 
@@ -73,7 +105,6 @@ export default function ObjectCreator(props: any) {
 
 
     async function send() {
-        // await //request
         getPages(code, setCode)
         setStorageObject(code)
         
@@ -83,7 +114,11 @@ export default function ObjectCreator(props: any) {
 
     return (
         <>
-            <Mensage msg="Errorororooror roorororoororo" status={400}></Mensage>
+                                        {/* Cuidado, usei 'as' */}
+            {mensage[2] ?  <Mensage msg={mensage[0] as string} status={mensage[1] as number}></Mensage> : ''}
+           
+
+
             <div id='object-area'>
             {editMode ? (
                 
