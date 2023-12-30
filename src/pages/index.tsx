@@ -8,7 +8,7 @@ import { useState } from 'react'
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
-  const [pageData, setPageData] = useState({ pagination: {}, itens: [{}] })
+  const [pageData, setPageData] = useState({ pagination: {}, itens: [] })
   const [currentPage, setCurrentPage] = useState(1)
   const [totalPages, setTotalPages] = useState(5)
 

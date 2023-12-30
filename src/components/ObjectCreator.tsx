@@ -6,8 +6,6 @@ import Mensage from "@/extraComponets/Mensage"
 import axios from "axios"
 
 interface PropsObjectCreator {
-    // paginationObject: object
-    // setPaginationObject: any
     setPageData: any
     setTotalPages:any
     curentPage: number
