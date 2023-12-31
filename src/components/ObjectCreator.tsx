@@ -42,18 +42,18 @@ export default function ObjectCreator(props: PropsObjectCreator) {
     useEffect(() => getStorageObject(setCode), [])
 
 
-    useEffect(()=> {
-        try {
-            const evalCode = convertStringToObject()
-            evalCode.page = props.curentPage
-            axios.put(`${baseUrl}/pagination`, evalCode)
-                .then((res)=>{
-                    props.setPageData(res.data)//propximo array
-                })
-                .catch(handleError)
-        } catch(e) {/*já cuidei disso*/}
+    // useEffect(()=> {
+    //     try {
+    //         const evalCode = convertStringToObject()
+    //         evalCode.page = props.curentPage
+    //         axios.put(`${baseUrl}/pagination`, evalCode)
+    //             .then((res)=>{
+    //                 props.setPageData(res.data)//propximo array
+    //             })
+    //             .catch(handleError)
+    //     } catch(e) {/*já cuidei disso*/}
 
-    }, [])
+    // }, [])
 
     function handleSuccess(res: any) {
         const msg = res.msg ?? 'Sending...'
@@ -65,7 +65,7 @@ export default function ObjectCreator(props: PropsObjectCreator) {
     }
     
     function handleError(res: any) {
-        const msg = res.msg ?? 'Error'
+        const msg = res.response.data.msg ?? 'Server error'
         setMensage([msg, 400, true])
 
         setTimeout(()=> setMensage([msg, 400, false]), 5000)
@@ -86,6 +86,8 @@ export default function ObjectCreator(props: PropsObjectCreator) {
     function getPages(code: string, setPagesItens: any) {
         try {
             const evalCode = convertStringToObject()
+            evalCode.pagination.page = props.curentPage
+
             axios.put(`${baseUrl}/pagination`, evalCode)
                 .then(handleSuccess)
                 .catch(handleError)
@@ -109,6 +111,22 @@ export default function ObjectCreator(props: PropsObjectCreator) {
         changeEditMode(false)
     }
     
+
+
+
+    useEffect(()=> {
+        try {
+            const evalCode = eval('(' + code + ')')
+            evalCode.pagination.page = props.curentPage
+    
+            axios.put(`${baseUrl}/pagination`, evalCode)
+                .then(res => props.setPageData(res.data))
+        } catch(e) {}
+    //     const evalCode = eval('(' + code + ')')
+    //     evalCode.pagination.page = props.curentPage
+    //     axios.put(`${baseUrl}/pagination`, evalCode)
+    //         .then(res=> props.setPageData(res.data))
+    }, [props.curentPage])
 
     return (
         <>

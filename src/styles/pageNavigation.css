@@ -1,0 +1,76 @@
+/* Estilos para a barra de paginação */
+.pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    justify-content: center;
+    align-items: baseline;
+    margin-top: 20px;
+    user-select: none;
+}
+
+.pagination li {
+display: inline-block;
+margin-right: 5px;
+}
+
+.pagination a {
+    cursor: pointer;
+    padding: 8px;
+    border: 1px solid #ddd;
+    text-decoration: none;
+    color: #333;
+    border-radius: 4px;
+}
+
+.pagination a:hover {
+    background-color: #007bff71;
+    border: 1px solid #007bff71;
+    /* background-color: #eee; */
+    box-shadow: 2px 2px 10px #007bff;
+}
+
+.pagination .active a {
+    background-color: #007bff;
+    color: #fff;
+    border: 1px solid #007bff;
+    box-shadow: 2px 2px 10px #007bff;
+}
+
+.pagination .break-me a {
+cursor: default;
+pointer-events: none;
+}
+
+/* Estilos para os botões Anterior e Próxima */
+.pagination .previous,
+.pagination .next {
+    cursor: pointer;
+    padding: 8px;
+    /* border: 1px solid #ddd; */
+    text-decoration: none;
+    color: #333;
+    border-radius: 4px;
+}
+
+.pagination a.previous:hover,
+.pagination a.next:hover {
+    background-color: #eee;
+    box-shadow: none;
+}
+
+/* Estilos para o botão Anterior quando desativado */
+.pagination .previous.disabled {
+pointer-events: none;
+background-color: #ddd;
+color: #999;
+border: 1px solid #ddd;
+}
+
+/* Estilos para o botão Próxima quando desativado */
+.pagination .next.disabled {
+    pointer-events: none;
+    background-color: #ddd;
+    color: #999;
+    border: 1px solid #ddd;
+}
