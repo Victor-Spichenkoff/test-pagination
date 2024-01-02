@@ -1,7 +1,13 @@
-/** @type {import('next').NextConfig} */
+// @type {import('next').NextConfig}
 const nextConfig = {
   reactStrictMode: true,
-  output: 'export'
+  output: 'export',
+  exportPathMap: async function () {
+    return {
+      '/': { page: '/' },
+      '/about': { page: '/about' },
+    }
+  }
 }
 
 module.exports = nextConfig
