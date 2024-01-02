@@ -92,7 +92,6 @@ export default function usePage() {
         const keys: any = Object.keys(currentObject)
         const values: any = Object.values(currentObject)
         
-        const { sortItenData } = usePage()
         const { keyArray, valuesArray } = sortItenData(keys, values)
     
         return ( 
