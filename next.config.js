@@ -4,8 +4,7 @@ const nextConfig = {
   output: 'export',
   exportPathMap: async function () {
     return {
-      '/': { page: '/' },
-      '/about': { page: '/about' },
+      '/': { page: '/' }
     }
   }
 }
