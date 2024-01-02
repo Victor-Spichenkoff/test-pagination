@@ -113,7 +113,7 @@ export default function ObjectCreator(props: PropsObjectCreator) {
     
 
 
-    const { curentPage } = props// eslint
+    // const { curentPage } = props// eslint
     useEffect(()=> {
         try {
             const evalCode = eval('(' + code + ')')
@@ -122,11 +122,7 @@ export default function ObjectCreator(props: PropsObjectCreator) {
             axios.put(`${baseUrl}/pagination`, evalCode)
                 .then(res => props.setPageData(res.data))
         } catch(e) {}
-    //     const evalCode = eval('(' + code + ')')
-    //     evalCode.pagination.page = props.curentPage
-    //     axios.put(`${baseUrl}/pagination`, evalCode)
-    //         .then(res=> props.setPageData(res.data))
-    }, [curentPage, code])
+    }, [props.curentPage])
 
     return (
         <>

@@ -18,7 +18,7 @@ function ColoredObject(props: {code:string}) {
   
   return (
     <div>
-      <h2>Final Code</h2>
+      <h2 id='final-code'>Final Code</h2>
       <CodeHighlighter code={props.code} />
     </div>
   )

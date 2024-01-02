@@ -5,6 +5,7 @@ export default function Document() {
     <Html lang="en">
       <Head >
         <title>Test Pagination</title>
+        <link rel="icon" href="/favicon.png" />
       </Head>
       <body>
         <Main />
