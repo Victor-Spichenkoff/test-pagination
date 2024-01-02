@@ -11,7 +11,7 @@ interface PropsPage {
 
 /*recebido: itens: */var itens = [{"nombre":"Adam","idade":75, img: 'https://source.unsplash.com/featured/?animals'},{"nombre":"Amelia","idade":119, img: 'https://source.unsplash.com/featured/?animals'},{"nombre":"Ximena","idade":106, img: 'https://source.unsplash.com/featured/?animals'},{"nombre":"Eva","idade":9, img: 'https://source.unsplash.com/featured/?animals'},{"nombre":"Zé","idade":80, img: 'https://source.unsplash.com/featured/?animals'}]
 
-const { capitalize, formatCard, itemToElement } = usePage()
+
 
 
 
@@ -20,6 +20,7 @@ const { capitalize, formatCard, itemToElement } = usePage()
 
 
 export default function Page(props: PropsPage) {
+    const { capitalize, formatCard, itemToElement } = usePage()
 
     function createAllCards() {
         return (
