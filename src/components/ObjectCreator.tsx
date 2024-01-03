@@ -1,3 +1,5 @@
+//criar a função copy
+
 import { useCallback, useState, useEffect } from "react"
 import ColoredObject from"./ColoredObject"
 import CodeEditor from "./CodeEditor"
