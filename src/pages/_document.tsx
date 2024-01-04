@@ -5,7 +5,7 @@ export default function Document() {
     <Html lang="en">
       <Head >
         <title>Test Pagination</title>
-        <link rel="icon" href="/favicon.png" />
+        <link rel="icon" href="https://cdn.iconscout.com/icon/free/png-256/free-scroll-right-left-2537320-2130475.png" />
       </Head>
       <body>
         <Main />
