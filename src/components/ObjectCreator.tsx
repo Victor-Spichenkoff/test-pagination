@@ -26,28 +26,6 @@ const defaultObject =`{
     }
 }`
 
-/*
-{
-    pagination: {
-        page: 1,
-        pageSize: 6,
-        totalPages: 10
-    },
-    fields: {
-        nombre: 'name',
-        idade: {
-            type: 'desc',
-            range: [1, 10]
-        },
-        texto: 'text_1',
-        img: 'image',
-        array: {
-            type: 'array',
-            fields: ['name', 'number']
-        }
-    }
-} */
-
 function getStorageObject(setCode: any) {
     const storageCode = localStorage.getItem(code_key) || defaultObject
     setCode(storageCode)
