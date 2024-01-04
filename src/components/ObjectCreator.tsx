@@ -1,5 +1,3 @@
-//criar a função copy
-
 import { useCallback, useState, useEffect } from "react"
 import ColoredObject from"./ColoredObject"
 import CodeEditor from "./CodeEditor"
@@ -17,12 +15,38 @@ const defaultObject =`{
     pagination: {
         page: 1,
         pageSize: 5,
-        totalPages: 3
+        totalPages: 10
     },
     fields: {
-        nombre: 'name'
+        nome: 'name',
+        joinhas: {
+            type: 'desc',
+            range: [1, 20]
+        }
     }
 }`
+
+/*
+{
+    pagination: {
+        page: 1,
+        pageSize: 6,
+        totalPages: 10
+    },
+    fields: {
+        nombre: 'name',
+        idade: {
+            type: 'desc',
+            range: [1, 10]
+        },
+        texto: 'text_1',
+        img: 'image',
+        array: {
+            type: 'array',
+            fields: ['name', 'number']
+        }
+    }
+} */
 
 function getStorageObject(setCode: any) {
     const storageCode = localStorage.getItem(code_key) || defaultObject
@@ -44,26 +68,29 @@ export default function ObjectCreator(props: PropsObjectCreator) {
     useEffect(() => getStorageObject(setCode), [])
 
 
-    // useEffect(()=> {
-    //     try {
-    //         const evalCode = convertStringToObject()
-    //         evalCode.page = props.curentPage
-    //         axios.put(`${baseUrl}/pagination`, evalCode)
-    //             .then((res)=>{
-    //                 props.setPageData(res.data)//propximo array
-    //             })
-    //             .catch(handleError)
-    //     } catch(e) {/*já cuidei disso*/}
 
-    // }, [])
+    function copyCode() {
+    const elementoComFormatacao:any = document.querySelector('.language-javascript')
 
-    function handleSuccess(res: any) {
+      const inputElement = document.createElement('textarea')
+      document.body.appendChild(inputElement)
+
+      inputElement.value = elementoComFormatacao.innerText
+      inputElement.select()
+      document.execCommand('copy')
+
+      document.body.removeChild(inputElement)
+      handleSuccess({ msg: 'Copied' , status: 201}, true)
+    }
+
+
+    function handleSuccess(res: any, notSetPage?: boolean) {
         const msg = res.msg ?? 'Sending...'
         setMensage([msg, res.status, true])
 
         setTimeout(()=> setMensage([res.msg, res.status, false]), 5000)
 
-        props.setPageData(res.data)
+        if(!notSetPage) props.setPageData(res.data)
     }
     
     function handleError(res: any) {
@@ -144,11 +171,9 @@ export default function ObjectCreator(props: PropsObjectCreator) {
             </div>
             <div id="edit-send">
                 <button id='edit' onClick={() => changeEditMode(true)}>Edit</button>
+                {!editMode ? <button id='copy' onClick={copyCode}>Copy</button> : ''}
                 <button id='send' onClick={send}>Send</button>
             </div>
         </>
     )
 }
-
-
-// export default ObjectCreator

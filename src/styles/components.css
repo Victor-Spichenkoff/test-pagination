@@ -56,6 +56,11 @@
     background-color: rgb(12, 126, 219);
 }
 
+#copy {
+    background-color: #00CED1;
+}
+
+
 #edit:hover {
     box-shadow: 0 0 20px rgb(1, 109, 1);
     background-color: #03b303;
@@ -65,6 +70,12 @@
     box-shadow: 0 0 20px rgb(12, 126, 219);
     background-color: rgb(0, 140, 255);
 }
+
+#copy:hover {
+    box-shadow: 0 0 20px #00CED1;
+    background-color: #05c5c9;
+}
+
 
 div#code-editor {
     width: 100% !important;
