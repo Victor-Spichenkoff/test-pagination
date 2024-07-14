@@ -43,7 +43,7 @@ export default function usePage() {
             if(value.includes('unsplash')) {
                 console.log(value)
                 return (
-                    <div style={{ backgroundImage: `url('${value}')` }} className="card-image">
+                    <div style={{ backgroundImage: `url(${value})` }} className="card-image">
                     </div>
                     // <img src={value} alt="" className="card-image"/>
                 )
